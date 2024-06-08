@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookistan</title>
+    <link rel="stylesheet"  href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <%- include("header.ejs") %>
+    <form action="/books" method="get"><button id="myBooks" type="submit">My Books</button></form> 
+    <form action="/" method="get"><button id="searchOnNew" type="submit">Search</button></form> 
+   
+    <form action="/add" method="post" class="main">
+      <input type="text"  autocomplete="off" maxlength="100" required name="book_name" id="book_name" placeholder="Enter Book's Name">
+      <input type="text" autocomplete="off" maxlength="50" required name="author" id="author" placeholder="Enter Author's Name">
+      <input type="number" autocomplete="off" max="10" min="0" required  name="rating" id="rating"  placeholder="Enter Your Rating">
+      <input type="text" autocomplete="off" maxlength="13" required minlength="10" name="serial_number" id="serial_number"  placeholder="Enter ISBN">
+      <button id="submit" type="submit">submit</button>
+     
+ 
+  </form>
+
+</body>
+</html>

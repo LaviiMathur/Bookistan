@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookistan</title>
+    <link rel="stylesheet" href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <%- include("header.ejs") %>
+    <form action="/new" method="get"><button id="new" type="submit">Add Book</button></form>
+    <form action="/books" method="get"><button id="myBooks" type="submit">My Books</button></form> 
+   
+    <% if(books){ %>
+
+        <form action="/addFromSearch" method="post" id="addRead" class="container">
+
+            <input type="hidden" name="newISBN" id="newISBN">
+            <input type="hidden" name="newTitle" id="newTitle">
+            <input type="hidden" name="newAuthor" id="newAuthor">
+            <input type="hidden" name="newRating" id="newRating">
+       
+       <% if (books===[]) { %>
+        <h1>Book Not Found</h1>
+       <% } else { %>
+         <% for (let i = 0; i < 10; i++) { %>
+            <%  const book= books[i] %>
+     
+     <div class="details" id="details" onclick="addRead('<%= book.isbn%>','<%= book.title%>','<%= book.author%>','<%= book.rating%>') ">
+         <img src="<%= book.cover %>" alt="cover" >
+         <div class="txt" >
+         <p class="name" ><%= book.title %></p>
+         <p class="author">By: <%= book.author %></p>
+         <p class="author"> <%= book.rating %>/10 </p>
+         <p class="bookNo"  >ISBN: <%= book.isbn %></p>
+     </div>
+         </div>
+ <% };} %>
+ <% } %>
+</form> 
+    
+    </form>
+
+    <script>
+     
+          function addRead(isbn,title,author,rating) {
+            document.getElementById("newTitle").value =  title,
+            document.getElementById("newISBN").value =  isbn ,
+            document.getElementById("newAuthor").value =author,
+            
+              document.getElementById("newRating").value =rating
+            console.log(title);
+          document.getElementById("addRead").submit();
+          }
+        
+        </script>
+</body>
+</html>

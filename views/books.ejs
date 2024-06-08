@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookistan</title>
+    <link rel="stylesheet"  href="/style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <%- include("header.ejs") %>
+    <form action="/" method="get"><button id="search" type="submit">Search</button></form> 
+    <form action="/new" method="get"><button id="new" type="submit">Add Book</button></form> 
+        <% if (books) { %>
+          <form action="/open" method="post" id="openBook" class="container">
+
+            <input type="hidden" name="isbn" id="isbnInput">
+          <% books.forEach(book => { %>
+           
+              <div class="details" >
+                <img src="<%=  `https://covers.openlibrary.org/b/isbn/${book.serial_number}-M.jpg` %>" width="120px" alt="cover">
+                <div class="txt">
+              <p class="name"><%= book.book_name %></p>
+              <p class="author">By: <%= book.author %></p>
+              <p class="rating">Rating: <%= book.rating %>/10</p>
+              <p class="bookNo">ISBN: <%= book.serial_number %></p>
+                </div>
+              </div>
+        
+          <% }); %>
+        <% } else { %>
+          <h1>No books available.</h1>
+        </form>
+        <% } %>
+    
+   
+</body>
+</html>
